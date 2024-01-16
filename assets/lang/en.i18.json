@@ -1,0 +1,71 @@
+{
+	"feel free to delete all this and start over": "okay? :)",
+	"menu": {
+		"title": "Your game",
+		"tagline": "Your tagline"
+	},
+	"settings": {
+		"muteSFX": "Mute Sounds",
+		"muteMusic": "Mute Music"
+	},
+	"demos": {
+		"text": {
+			"regularText": "This is a Text Object",
+			"bitmapText": "This is a Bitmap Text Object",
+			"sdfBitmapText": "This is a SDF Bitmap Text Object"
+		},
+		"drag": {
+			"instructions": "Drag the object around"
+		},
+		"sat": {
+			"instructions": "Drag the objects arround, while draggin use the scrollwheel to rotate.\nObjects will turn blue if they are collding with each other.\nPenetration vector will be drawn."
+		},
+		"physics": {
+			"instructions": "Simple physics via Verlet Integration. For advanced physics use Box2D wasm"
+		},
+		"resize": {
+			"instructions": "Pick one scale mode and resize the window\nThis image will always be centered on screen no matter your scale mode",
+			"original": "Current mode: Original.\nNo scaling is done after a resize",
+			"fit": "Current mode: Fit.\nYour image will be scaled to be as large as possible without being cropped. You might see black bars around your image",
+			"fill": "Current mode: Fill.\nYour image will be scaled to be as big as possible and will bleed outside the screen. You will never see black bars but you might lose part of the image.",
+			"buttonOriginal": "Set to Original",
+			"buttonFit": "Set to Fit",
+			"buttonFill": "Set to Fill"
+		},
+		"tween": {
+			"instructions": "Tweening is a powerful way to change properties of objects over time.\nYou can tween any property of any object, including the position, scale, rotation, alpha, tint, etc."
+		},
+		"datamanager": {
+			"instructions": "DataManager hides away all the hassle of storing permanent data.\nYou can inspect the stored data in the Application tab of your browser inspector",
+			"currentCount_zero": "You have no apples",
+			"currentCount_one": "You have {{count}} apple",
+			"currentCount_other": "You have {{count}} apples",
+			"noSavedCount": "You never saved before!",
+			"savedCount_zero": "Last time you saved you had no apples",
+			"savedCount_one": "Last time you saved you had {{count}} apple",
+			"savedCount_other": "Last time you saved you had {{count}} apples",
+			"save": "Save",
+			"load": "Load",
+			"nuke": "Delete"
+		},
+		"ui": {
+			"nineslice": {
+				"title": "This text is a child of the ninesliced sprite. Font gets smaller if text can't fit",
+				"body": "These controls are chids of the nineslice, that means they will inherit the scale the nineslice takes. However when the nineslices changes its width and height, the content doesn't get notified and it is up to you to make it work inside the onResize method.\nThis is one approach at responsiveness: Make every control resize on their own, find their own position and alter the properties individually.\nThe other approach is to add everything into one container, scale that and call it a day. It works best for popups so you can see the demo popup that opens when you click the button below.\nMixing both styles of resize is possible but it requires a lot of practice to not get lost.\nGood Luck!\n\nPS: You might have noticed that the button can get outside of the popup body. That is because this doesn't use a scrollview or anything like that. To find how to use a scrollview please check the Advanced UI Demo"
+			},
+			"popup": {
+				"title": "This is a popup",
+				"body": "You will see that all the values inside the popup are hardcoded and there is an external container that is resized to make the entire popup have the correct size",
+				"close": "Close"
+			},
+			"advanced": {
+				"title": "Welcome to the advanced ui!",
+				"body": "These controls are rarely used but if you need them they can get you out of trouble in a pinch"
+			}
+		},
+		"mask":
+		{
+			"instructions":"SpriteMask, EraseFilter and the BlurMaskFilter all use the alpha+red channel of a sprite."
+		}
+	}
+}

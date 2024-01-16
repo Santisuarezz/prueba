@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    //Build dir
+    "outDir": "./dist/",
+    //linter
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    //
+    "sourceMap": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
+    "types": [
+      "webpack-env"
+    ],
+    "baseUrl": "./",
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

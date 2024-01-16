@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"ipatalas.vscode-postfix-ts"
+	],
+	"unwantedRecommendations": [
+		"esbenp.prettier-vscode"
+	]
+}

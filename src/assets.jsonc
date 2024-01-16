@@ -1,0 +1,95 @@
+// ! THIS FILE IS A MAGICAL JSON THAT CAN HAVE COMMENTS.
+// It will be turned into a regular json file during the build process.
+// PLEASE DON'T REMOVE THE .jsonc extension!
+// ! PLEASE REMEMBER TO TELL YOUR SCENES WHICH BUNDLES THEY NEED WITH THE `public static readonly BUNDLES: string[] = ["bundleName"]` PROPERTY.
+{
+	"bundles": [
+		// * Example of bundle with assets object
+		// {
+		// 		"name": "bundleObjectsName",
+		// 		"assets": {
+		// 			! ATLAS APPEAR INSIDE PACKAGES WITH THE SAME NAME AUTOMAGICALLY!
+		// 			"assetname": "./path/to/asset.{png,webp,avif}",
+		// 			"assetnameWithMetadata": {
+		// 				"src": "./path/to/asset.png", // can NOT use blobs here!
+		// 				"data":{"lang": "en"}
+		// 			}
+		// 		}
+		// * Example of bundle with assets array
+		// {
+		// 	"name": "bundleArrayName",
+		// 		"assets": [
+		// 			! ATLAS APPEAR INSIDE PACKAGES WITH THE SAME NAME AUTOMAGICALLY!
+		// 			{
+		//				"name": "assetname",
+		//				"srcs": "./path/to/asset.{png,webp,avif}"
+		//			}
+		// 			{
+		//				"name": "assetnameWithMetadata",
+		// 				"srcs": "./path/to/asset.{png,webp,avif}", // You CAN use blobs here!
+		// 				"data":{
+		//					"lang": "en"
+		//				}
+		// 			}
+		// 		]
+		// },
+		{
+			"name": "initialLoad",
+			"assets": [
+				{
+					"name": "strings-en",
+					"srcs": "./lang/en.i18.json"
+				},
+				{
+					"name": "defaultFont",
+					"srcs": "./fonts/Rounded_Elegance.{woff2,woff,ttf}",
+					"data": {
+						"family": "Rounded Elegance",
+						"weight": [
+							"normal",
+							"bold"
+						]
+					}
+				},
+				{
+					"name": "defaultSDFFont",
+					"srcs": "./fonts/roundedelegance.json"
+				}
+			]
+		},
+		{
+			"name": "sfx",
+			"assets": {
+				"beep": "./sfx/beep.mp3"
+			}
+		},
+		{
+			"name": "music",
+			"assets": {
+				"music": "./music/musical.mp3"
+			}
+		},
+		{
+			"name": "package-1",
+			"assets": {
+				"package 1 background": "./img/big_placeholder/background-1.jpg",
+				"big_background": "./img/big_placeholder/bg_game.png",
+				"mask_demo": "./img/big_placeholder/mask_demo@0.5x.png" // @0.5x means 50% of the original size, pixi will internally upscale and you will never know!
+			}
+		},
+		{
+			"name": "package-2",
+			"assets": {
+				"package 2 background": "./img/big_placeholder/background-2.jpg"
+			}
+		},
+		{
+			"name": "3d",
+			"assets": {
+				"duckModel": "./models/duck/Duck.gltf",
+				"dancingStormtrooper": "./models/dancing-stormtrooper.glb",
+				"gridTexture": "./img/big_placeholder/bg_game.png"
+			}
+		}
+	]
+}

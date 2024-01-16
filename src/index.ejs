@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <% if(langCode){ %>
+    <html lang="<%= langCode %>">
+  <% } else{ %>  
+    <html>
+  <% } %>
+ 
+<!-- Built on: <%= buildDate %> -->
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>
+    <%= PACKAGE.name %>
+  </title>
+
+  <!-- The viewport will be overwritten by the renderer later, remember that! -->
+  <meta id="viewport" name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #pixi-content {
+      background: #000000;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+  <noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this
+    page.</noscript>
+
+  <div id="pixi-content"><canvas id="pixi-canvas" /></div>
+
+</body>
+
+</html>
