@@ -37,8 +37,9 @@
 			"name": "initialLoad",
 			"assets": [
 				{
-					"name": "strings-en",
-					"srcs": "./lang/en.i18.json"
+					
+					"name": "Kratos",
+					"srcs": "./kratos.webp"
 				},
 				{
 					"name": "defaultFont",
@@ -92,4 +93,5 @@
 			}
 		}
 	]
-}
+}        
+   
