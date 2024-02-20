@@ -37,11 +37,6 @@
 			"name": "initialLoad",
 			"assets": [
 				{
-					
-					"name": "Kratos",
-					"srcs": "./img/big_placeholder/kratos.webp"
-				},
-				{
 					"name": "defaultFont",
 					"srcs": "./fonts/Rounded_Elegance.{woff2,woff,ttf}",
 					"data": {
@@ -81,8 +76,13 @@
 		{
 			"name": "package-2",
 			"assets": {
-				"package 2 background": "./img/big_placeholder/background-2.jpg"
+				"kratos": "./img/kratos.jpg",
+				"cuadrado": "./img/cuadrado.png"
+
+	
+			
 			}
+		
 		},
 		{
 			"name": "3d",
@@ -93,5 +93,4 @@
 			}
 		}
 	]
-}        
-   
+}
