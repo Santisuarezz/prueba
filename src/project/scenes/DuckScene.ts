@@ -1,4 +1,4 @@
-import { Sprite } from "pixi.js";
+import { Graphics, Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
 
@@ -26,3 +26,9 @@ export class DuckScene extends PixiScene {
 		dt;
 	}
 }
+const myGraph: Graphics = new Graphics();
+myGraph.lineStyle({ color: 0xff00ff, width: 10, alpha: 1 });
+myGraph.moveTo(0, 0);
+myGraph.lineTo(300, 500);
+
+myGraph.position.set(1024 / 2, 768 / 2);
