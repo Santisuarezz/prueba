@@ -1,7 +1,7 @@
 import { Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
-import { SantiButton } from "./SantiButton";
+import { Dice } from "./Dice";
 import { Manager } from "../..";
 
 export class DuckScene extends PixiScene {
@@ -33,17 +33,10 @@ export class DuckScene extends PixiScene {
 		// 	console.log("Salio");
 		// });
 
-		const firstBtn = new SantiButton(() => {
-			console.log("Tap first");
-		}, 0x00ffff);
+		const firstBtn = new Dice(0xeff1b7);
 		firstBtn.position.set(Manager.width / 2, Manager.height * 0.4);
 
-		const secondBtn = new SantiButton(() => {
-			console.log("Tap second");
-		}, 0xff00ff);
-		secondBtn.position.set(Manager.width / 2, Manager.height * 0.6);
-
-		this.addChild(firstBtn, secondBtn);
+		this.addChild(firstBtn);
 
 		// myGraph.position.set(1024 / 2, 768 / 2);
 		// this.addChild(myGraph);
