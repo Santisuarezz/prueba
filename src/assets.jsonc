@@ -78,11 +78,7 @@
 			"assets": {
 				"kratos": "./img/kratos.jpg",
 				"cuadrado": "./img/cuadrado.png"
-
-	
-			
 			}
-		
 		},
 		{
 			"name": "3d",
