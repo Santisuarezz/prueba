@@ -1,8 +1,7 @@
 import { Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
-import { Dice } from "./Dice";
-import { Manager } from "../..";
+import { EnderButton } from "../elements/EnderButton";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
@@ -33,10 +32,10 @@ export class DuckScene extends PixiScene {
 		// 	console.log("Salio");
 		// });
 
-		const firstBtn = new Dice(0xeff1b7);
-		firstBtn.position.set(Manager.width / 2, Manager.height * 0.4);
+		// const dice = new Dice(0xeff1b7);
+		// dice.position.set(Manager.width / 2, Manager.height * 0.4);
 
-		this.addChild(firstBtn);
+		// this.addChild(dice);
 
 		// myGraph.position.set(1024 / 2, 768 / 2);
 		// this.addChild(myGraph);
@@ -48,6 +47,10 @@ export class DuckScene extends PixiScene {
 		// myText.scale.set(3);
 
 		// this.kratos.addChild(myText);
+		const enderButton = new EnderButton();
+		// enderButton.position.set(Manager.width / 2, Manager.height * 0.4);
+
+		this.addChild(enderButton);
 	}
 
 	public override onResize(_newW: number, _newH: number): void {
