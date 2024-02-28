@@ -77,7 +77,8 @@
 			"name": "package-2",
 			"assets": {
 				"kratos": "./img/kratos.jpg",
-				"cuadrado": "./img/cuadrado.png"
+				"cuadrado": "./img/cuadrado.png",
+				"menu": "./img/settings.png"
 			}
 		},
 		{
