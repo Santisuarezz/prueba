@@ -1,18 +1,28 @@
 import { Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
-import { EnderButton } from "../elements/EnderButton";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
 
 	private kratos;
+	private menu;
 	// private cuadrado;
 
 	constructor() {
 		super();
 		this.kratos = Sprite.from("kratos");
 		this.addChild(this.kratos);
+
+		this.menu = Sprite.from("menu");
+		this.menu.eventMode = "static";
+		this.menu.cursor = "pointer";
+		this.menu.on("pointertap", () => {
+			console.log("tap");
+
+			this.menu.tint = 0xff00ff;
+		});
+		this.addChild(this.menu);
 
 		// this.cuadrado = Sprite.from("cuadrado");
 		// this.addChild(this.cuadrado);
@@ -47,10 +57,10 @@ export class DuckScene extends PixiScene {
 		// myText.scale.set(3);
 
 		// this.kratos.addChild(myText);
-		const enderButton = new EnderButton();
+		// const enderButton = new EnderButton();
 		// enderButton.position.set(Manager.width / 2, Manager.height * 0.4);
 
-		this.addChild(enderButton);
+		// this.addChild(enderButton);
 	}
 
 	public override onResize(_newW: number, _newH: number): void {
