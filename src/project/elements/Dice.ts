@@ -19,7 +19,7 @@ export class Dice extends Container {
 		background.on("pointerout", () => {
 			console.log("out");
 		});
-		// this.addChild(background);
+		this.addChild(background);
 
 		const number: Text = new Text(6, { fontSize: 75, align: "center" });
 		background.addChild(number);

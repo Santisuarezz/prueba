@@ -5,6 +5,6 @@ export class Settingsb extends Container {
 
 		const asdasd: Sprite = Sprite.from("menu");
 
-		// this.addChild(asdasd);
+		this.addChild(asdasd);
 	}
 }
