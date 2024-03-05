@@ -1,13 +1,14 @@
-import { Sprite } from "pixi.js";
+import { Graphics, Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
+import { Keyboard } from "../../engine/input/Keyboard";
+import { Key } from "../../engine/input/Key";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
 
 	private kratos;
 	private menu;
-	// private cuadrado;
 
 	constructor() {
 		super();
@@ -24,23 +25,60 @@ export class DuckScene extends PixiScene {
 		});
 		this.addChild(this.menu);
 
+		const deltaWalk = 2;
+		const deltaRun = 5;
+		let isRunning = false;
+
+		const keyboard = new Keyboard();
+		keyboard.pressed.on(Key.KEY_Z, () => {
+			isRunning = !isRunning;
+
+			if (isRunning) {
+				console.log("running");
+			} else {
+				console.log("walking");
+			}
+		});
+		keyboard.pressed.on(Key.KEY_D, () => {
+			if (isRunning) {
+				character.x += deltaRun;
+			} else {
+				character.x += deltaWalk;
+			}
+		});
+		keyboard.pressed.on(Key.KEY_A, () => {
+			if (isRunning) {
+				character.x -= deltaRun;
+			} else {
+				character.x -= deltaWalk;
+			}
+		});
+		keyboard.pressed.on(Key.KEY_S, () => {
+			if (isRunning) {
+				character.y += deltaRun;
+			} else {
+				character.y += deltaWalk;
+			}
+		});
+		keyboard.pressed.on(Key.KEY_W, () => {
+			if (isRunning) {
+				character.y -= deltaRun;
+			} else {
+				character.y -= deltaWalk;
+			}
+		});
+
+		const character: Graphics = new Graphics();
+		character.beginFill(0x386ddf);
+		character.drawRect(0, 0, 200, 200);
+
+		this.addChild(character);
+
 		// this.cuadrado = Sprite.from("cuadrado");
 		// this.addChild(this.cuadrado);
 		// this.cuadrado.position.set(0, 400);
 		// this.cuadrado.width = 400;
 		// this.cuadrado.scale.y = this.cuadrado.scale.x;
-
-		// const myGraph: Graphics = new Graphics();
-		// myGraph.beginFill(0x386ddf);
-		// myGraph.drawRect(-100, -100, 200, 200);
-		// myGraph.eventMode = "static";
-		// myGraph.on("pointertap", () => {
-		// console.log("Tapeado");
-		// });
-		// myGraph.on("pointerover", () => {}, this);
-		// myGraph.on("pointerout", () => {
-		// console.log("Salio");
-		// });
 
 		// const dice = new Dice(0xeff1b7);
 		// dice.position.set(Manager.width / 2, Manager.height * 0.4);
