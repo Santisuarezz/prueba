@@ -3,7 +3,7 @@ import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
 import { Keyboard } from "../../engine/input/Keyboard";
 import { Key } from "../../engine/input/Key";
-import { Character } from "../elements/character";
+import { Character } from "../elements/Character";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
