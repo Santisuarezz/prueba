@@ -34,7 +34,6 @@ export class DuckScene extends PixiScene {
 
 		this.keybinds = new Keyboard();
 	}
-
 	public override update(_dt: number): void {
 		if (this.keybinds.isDown(Key.KEY_D) || this.keybinds.isDown("ArrowRight")) {
 			this.playerCharacter.moveTo("right");
@@ -48,7 +47,6 @@ export class DuckScene extends PixiScene {
 		if (this.keybinds.isDown(Key.KEY_S) || this.keybinds.isDown("ArrowDown")) {
 			this.playerCharacter.moveTo("down");
 		}
-
 		this.playerCharacter.isRunning = this.keybinds.isDown(Key.KEY_Z);
 	}
 
