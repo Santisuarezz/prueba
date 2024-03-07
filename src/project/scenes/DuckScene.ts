@@ -1,14 +1,18 @@
-import { Graphics, Sprite } from "pixi.js";
+import { Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
 import { Keyboard } from "../../engine/input/Keyboard";
 import { Key } from "../../engine/input/Key";
+import { Character } from "../elements/character";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
 
 	private kratos;
 	private menu;
+
+	private keybinds: Keyboard;
+	private playerCharacter: Character;
 
 	constructor() {
 		super();
@@ -25,87 +29,30 @@ export class DuckScene extends PixiScene {
 		});
 		this.addChild(this.menu);
 
-		const deltaWalk = 2;
-		const deltaRun = 5;
-		let isRunning = false;
+		this.playerCharacter = new Character();
+		this.addChild(this.playerCharacter);
 
-		const keyboard = new Keyboard();
-		keyboard.pressed.on(Key.KEY_Z, () => {
-			isRunning = !isRunning;
+		this.keybinds = new Keyboard();
+	}
 
-			if (isRunning) {
-				console.log("running");
-			} else {
-				console.log("walking");
-			}
-		});
-		keyboard.pressed.on(Key.KEY_D, () => {
-			if (isRunning) {
-				character.x += deltaRun;
-			} else {
-				character.x += deltaWalk;
-			}
-		});
-		keyboard.pressed.on(Key.KEY_A, () => {
-			if (isRunning) {
-				character.x -= deltaRun;
-			} else {
-				character.x -= deltaWalk;
-			}
-		});
-		keyboard.pressed.on(Key.KEY_S, () => {
-			if (isRunning) {
-				character.y += deltaRun;
-			} else {
-				character.y += deltaWalk;
-			}
-		});
-		keyboard.pressed.on(Key.KEY_W, () => {
-			if (isRunning) {
-				character.y -= deltaRun;
-			} else {
-				character.y -= deltaWalk;
-			}
-		});
+	public override update(_dt: number): void {
+		if (this.keybinds.isDown(Key.KEY_D) || this.keybinds.isDown("ArrowRight")) {
+			this.playerCharacter.moveTo("right");
+		}
+		if (this.keybinds.isDown(Key.KEY_A) || this.keybinds.isDown("ArrowLeft")) {
+			this.playerCharacter.moveTo("left");
+		}
+		if (this.keybinds.isDown(Key.KEY_W) || this.keybinds.isDown("ArrowUp")) {
+			this.playerCharacter.moveTo("up");
+		}
+		if (this.keybinds.isDown(Key.KEY_S) || this.keybinds.isDown("ArrowDown")) {
+			this.playerCharacter.moveTo("down");
+		}
 
-		const character: Graphics = new Graphics();
-		character.beginFill(0x386ddf);
-		character.drawRect(0, 0, 200, 200);
-
-		this.addChild(character);
-
-		// this.cuadrado = Sprite.from("cuadrado");
-		// this.addChild(this.cuadrado);
-		// this.cuadrado.position.set(0, 400);
-		// this.cuadrado.width = 400;
-		// this.cuadrado.scale.y = this.cuadrado.scale.x;
-
-		// const dice = new Dice(0xeff1b7);
-		// dice.position.set(Manager.width / 2, Manager.height * 0.4);
-
-		// this.addChild(dice);
-
-		// myGraph.position.set(1024 / 2, 768 / 2);
-		// this.addChild(myGraph);
-
-		// const myText: Text = new Text("asdasdasd", { fontSize: 108, fill: 0xff0000 });
-		// myText.position.x = 0;
-		// myText.position.y = 300;
-		// myText.angle = 45;
-		// myText.scale.set(3);
-
-		// this.kratos.addChild(myText);
-		// const enderButton = new EnderButton();
-		// enderButton.position.set(Manager.width / 2, Manager.height * 0.4);
-
-		// this.addChild(enderButton);
+		this.playerCharacter.isRunning = this.keybinds.isDown(Key.KEY_Z);
 	}
 
 	public override onResize(_newW: number, _newH: number): void {
 		ScaleHelper.setScaleRelativeToScreen(this.kratos, _newW, _newH, 1, 1);
-	}
-
-	public override update(dt: number): void {
-		dt;
 	}
 }
