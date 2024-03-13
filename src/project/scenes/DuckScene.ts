@@ -1,21 +1,25 @@
+import type { FederatedPointerEvent } from "pixi.js";
 import { Sprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
 import { Keyboard } from "../../engine/input/Keyboard";
 import { Key } from "../../engine/input/Key";
 import { Character } from "../elements/Character";
+import type { Enemy } from "../elements/Enemy";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
 
 	private kratos;
 	private menu;
+	private enemy: Enemy;
 
 	private keybinds: Keyboard;
 	private playerCharacter: Character;
 
 	constructor() {
 		super();
+
 		this.kratos = Sprite.from("kratos");
 		this.addChild(this.kratos);
 
@@ -31,6 +35,14 @@ export class DuckScene extends PixiScene {
 
 		this.playerCharacter = new Character();
 		this.addChild(this.playerCharacter);
+
+		this.enemy = new Character();
+		this.addChild(this.enemy);
+
+		this.eventMode = "static";
+		this.on("globalmousemove", (e: FederatedPointerEvent) => {
+			this.playerCharacter.aim(e.global);
+		});
 
 		this.keybinds = new Keyboard();
 	}

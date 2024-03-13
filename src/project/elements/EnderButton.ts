@@ -22,6 +22,6 @@ export class EnderButton extends Container {
 			console.log();
 		});
 
-		// this.addChild(cuadrao);
+		this.addChild(cuadrao);
 	}
 }
