@@ -1,4 +1,5 @@
 import { Container, Graphics } from "pixi.js";
+import { Manager } from "../..";
 
 type Direction = "up" | "down" | "right" | "left";
 
@@ -37,9 +38,11 @@ export class Character extends Container {
 		}
 		if (direction == "left") {
 			this.x = this.x - deltaMove;
-			if (this.moveTo)
+			if (this.x < 0) {
+				return;
+			}
 			// que no se pase 0
-}
+		}
 
 		// Aprender switch a futuro
 	}
