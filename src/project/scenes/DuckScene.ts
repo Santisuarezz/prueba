@@ -5,7 +5,7 @@ import { ScaleHelper } from "../../engine/utils/ScaleHelper";
 import { Keyboard } from "../../engine/input/Keyboard";
 import { Key } from "../../engine/input/Key";
 import { Character } from "../elements/Character";
-import type { Enemy } from "../elements/Enemy";
+import { Enemy } from "../elements/Enemy";
 
 export class DuckScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
@@ -33,11 +33,12 @@ export class DuckScene extends PixiScene {
 		});
 		this.addChild(this.menu);
 
+		this.enemy = new Enemy();
+		this.enemy.position.set(500);
+		this.addChild(this.enemy);
+
 		this.playerCharacter = new Character();
 		this.addChild(this.playerCharacter);
-
-		this.enemy = new Character();
-		this.addChild(this.enemy);
 
 		this.eventMode = "static";
 		this.on("globalmousemove", (e: FederatedPointerEvent) => {
