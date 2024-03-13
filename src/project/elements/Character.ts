@@ -26,19 +26,21 @@ export class Character extends Container {
 			deltaMove = this.walkSpeed;
 		}
 
-		switch (direction) {
-			case "up":
-				this.y -= deltaMove;
-				break;
-			case "down":
-				this.y += deltaMove;
-				break;
-			case "right":
-				this.x += deltaMove;
-				break;
-			case "left":
-				this.x -= deltaMove;
-				break;
+		if (direction == "up") {
+			this.y = this.y - deltaMove;
 		}
+		if (direction == "down") {
+			this.y = this.y + deltaMove;
+		}
+		if (direction == "right") {
+			this.x = this.x + deltaMove;
+		}
+		if (direction == "left") {
+			this.x = this.x - deltaMove;
+			if (this.moveTo)
+			// que no se pase 0
+}
+
+		// Aprender switch a futuro
 	}
 }
