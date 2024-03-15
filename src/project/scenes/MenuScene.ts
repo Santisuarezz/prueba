@@ -1,76 +1,77 @@
-import { Timer } from "../../engine/tweens/Timer";
-import { SoundLib } from "../../engine/sound/SoundLib";
-import { StateMachineAnimator } from "../../engine/animation/StateMachineAnimation";
-import { Easing, Tween } from "tweedle.js";
-import i18next from "i18next";
-import { Sprite } from "pixi.js";
-import { Texture } from "pixi.js";
+import { Graphics, Text } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
+import { ScaleHelper } from "../../engine/utils/ScaleHelper";
+import { DuckScene } from "./DuckScene";
+import { Manager } from "../..";
 
 export class MenuScene extends PixiScene {
 	public static readonly BUNDLES = ["package-1", "sfx", "music"];
-
-	private anim: StateMachineAnimator;
+	private background: Graphics = new Graphics();
 
 	constructor() {
 		super();
 
-		// how to get localized values:
-		console.log("The next string is localized:", i18next.t<string>("menu.title"));
-		console.log("The next string is also localized:", i18next.t<string>("settings.muteSFX"));
+		this.background.beginFill(0xa5a6af);
+		this.background.drawRect(0, 0, 300, 400);
+		this.addChild(this.background);
 
-		SoundLib.playMusic("music");
+		// --------- BOTON PLAY ---------
+		const botonplay: Graphics = new Graphics();
+		botonplay.beginFill(0xf1cc13);
+		botonplay.drawRoundedRect(-200 / 2, -55 / 2, 200, 55, 10);
+		botonplay.position.set(this.background.width / 2, 100);
 
-		const s: Sprite = Sprite.from("big_background");
-		this.addChild(s);
-		const t = new Tween(s);
-		t.to({ x: 300, y: 300, scale: { x: -1, y: -1 }, alpha: 0.25 }, 3000);
-		t.repeat(Infinity);
-		t.yoyo(true);
-		t.easing(Easing.Exponential.InOut);
-		t.start();
+		const playText: Text = new Text("PLAY", { fill: 0x000000, fontSize: 30, align: "center", fontWeight: "bold" });
+		playText.anchor.set(0.5);
+		botonplay.addChild(playText);
 
-		let textAux;
-		const textArray: Texture[] = [];
-		for (let i = 0; i < 4; i++) {
-			textAux = Texture.from(`package-1/bronze_${i + 1}.png`, {}, true);
-			textArray.push(textAux);
-		}
-		for (let i = 3; i > 0; i--) {
-			textAux = Texture.from(`package-1/bronze_${i}.png`, {}, true);
-			textArray.push(textAux);
-		}
+		botonplay.eventMode = "static";
+		botonplay.on("pointertap", () => {
+			Manager.changeScene(DuckScene);
+		});
 
-		this.anim = new StateMachineAnimator(false);
-		this.anim.addState("hi", textArray, 5, true);
-		this.anim.anchor.set(0.5);
+		botonplay.on("pointerover", () => {
+			console.log("over");
+			botonplay.scale.set(1.1);
+		});
+		botonplay.on("pointerout", () => {
+			console.log("out");
+			botonplay.scale.set(1);
+		});
 
-		this.addChild(this.anim);
+		// --------- BOTON CONFIG ---------
 
-		this.anim.position.set(300, 300);
+		const botonConf: Graphics = new Graphics();
+		botonConf.beginFill(0xf1cc13);
+		botonConf.drawRoundedRect(0, 0, 200, 55, 10);
+		botonConf.position.set(this.background.width / 2 - botonConf.width / 2, 200 - botonConf.height / 2);
 
-		this.anim.onFrameChange = (currentFrame) => {
-			this.anim.scale.x = currentFrame > 3 ? -1 : 1;
-		};
+		const configText: Text = new Text("SETTINGS", { fill: 0x000000, fontSize: 30, align: "center", fontWeight: "bold" });
+		configText.anchor.set(0.5);
+		configText.position.set(botonConf.width / 2, botonConf.height / 2);
+		botonConf.addChild(configText);
 
-		this.anim.interactive = true;
-		this.anim.on(
-			"pointerdown",
-			() => {
-				this.anim.stop();
-			},
-			this
-		);
+		// --------- BOTON CREDITS ---------
 
-		const tim = new Timer();
-		tim.to(1000)
-			.start()
-			.onComplete(() => {
-				console.log("timer complete");
-			});
+		const botonCredit: Graphics = new Graphics();
+		botonCredit.beginFill(0xf1cc13);
+		botonCredit.drawRoundedRect(0, 0, 200, 55, 10);
+		botonCredit.position.set(this.background.width / 2 - botonCredit.width / 2, 300 - botonCredit.height / 2);
+
+		const creditText: Text = new Text("CREDITS", { fill: 0x000000, fontSize: 30, align: "center", fontWeight: "bold" });
+		creditText.anchor.set(0.5);
+		creditText.position.set(botonCredit.width / 2, botonCredit.height / 2);
+		botonCredit.addChild(creditText);
+
+		// TEXT
+
+		this.background.addChild(botonplay, botonConf, botonCredit);
 	}
 
-	public override update(dt: number): void {
-		this.anim.update(dt);
+	public override update(_dt: number): void {}
+
+	public override onResize(_newW: number, _newH: number): void {
+		ScaleHelper.setScaleRelativeToScreen(this.background, _newW, _newH, 0.8, 0.8);
+		this.background.position.set(_newW / 2 - this.background.width / 2, _newH / 2 - this.background.height / 2);
 	}
 }

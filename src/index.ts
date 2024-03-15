@@ -7,10 +7,10 @@ import { forceFocus, preventDrag, preventKeys } from "./engine/utils/browserFunc
 import { ScaleHelper } from "./engine/utils/ScaleHelper";
 import { ForagePersistanceProvider } from "./engine/datamanager/ForagePersistanceProvider";
 import { PixiRenderer } from "./engine/scenemanager/renderers/PixiRenderer";
-import { DuckScene } from "./project/scenes/DuckScene";
 import { settings } from "pixi.js";
 import { DEFAULTS } from "tweedle.js";
 import { Box2DHelper } from "./engine/utils/Box2DHelper";
+import { MenuScene } from "./project/scenes/MenuScene";
 
 settings.RENDER_OPTIONS.hello = false;
 
@@ -59,7 +59,7 @@ window.dispatchEvent(new Event("resize"));
 
 const initializeCb = function (): void {
 	// Manager.changeScene(import(/* webpackPrefetch: true */ "./project/scenes/LoaderScene"));
-	Manager.changeScene(DuckScene);
+	Manager.changeScene(MenuScene);
 };
 
 if (ALL_FLAGS.USE_BOX2D) {

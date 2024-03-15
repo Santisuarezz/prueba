@@ -78,7 +78,8 @@
 			"assets": {
 				"kratos": "./img/kratos.jpg",
 				"cuadrado": "./img/cuadrado.png",
-				"menu": "./img/settings.png"
+				"menu": "./img/settings.png",
+				"fondo": "./img/fondo.png"
 			}
 		},
 		{
