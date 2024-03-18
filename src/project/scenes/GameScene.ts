@@ -6,8 +6,9 @@ import { Tween } from "tweedle.js";
 import { Manager } from "../..";
 import { Keyboard } from "../../engine/input/Keyboard";
 import { Key } from "../../engine/input/Key";
+import { Bala } from "../elements/Bala";
 
-export class IngameScene extends PixiScene {
+export class GameScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
 	private fondogame: Graphics = new Graphics();
 	private nube: Sprite;
@@ -15,6 +16,8 @@ export class IngameScene extends PixiScene {
 
 	private player: Graphics = new Graphics();
 	private playerSpeed: number = 10;
+	private shootDelayS: number = 60;
+	private lastShoot: number = 0;
 
 	constructor() {
 		super();
@@ -46,6 +49,18 @@ export class IngameScene extends PixiScene {
 
 	public override update(_dt: number): void {
 		this.playerMovement();
+		if (this.keybinds.isDown(Key.SPACE) && this.lastShoot >= this.shootDelayS) {
+			this.lastShoot = 0;
+			const bulletOffset = 20; // offset es separacion, se suma 20 para que no este pegado al jugador
+			const bullet = new Bala(Manager.width - this.player.x + this.player.width + bulletOffset);
+			this.addChild(bullet);
+			bullet.position.set(this.player.x + this.player.width + bulletOffset, this.player.y + this.player.height / 2);
+			console.log(bullet.position);
+		}
+		this.lastShoot++;
+		// ++ es lo mismo que
+		// Algo = Algo + 1 (Algo tiene que tener un numero adentro)
+		// Algo++
 	}
 
 	private playerMovement(): void {
