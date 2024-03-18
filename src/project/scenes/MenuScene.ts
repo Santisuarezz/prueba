@@ -1,8 +1,9 @@
 import { Graphics, Text } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
-import { DuckScene } from "./DuckScene";
+
 import { Manager } from "../..";
+import { IngameScene } from "./IngameScene";
 
 export class MenuScene extends PixiScene {
 	public static readonly BUNDLES = ["package-1", "sfx", "music"];
@@ -27,7 +28,7 @@ export class MenuScene extends PixiScene {
 
 		botonplay.eventMode = "static";
 		botonplay.on("pointertap", () => {
-			Manager.changeScene(DuckScene);
+			Manager.changeScene(IngameScene);
 		});
 
 		botonplay.on("pointerover", () => {

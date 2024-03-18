@@ -79,7 +79,8 @@
 				"kratos": "./img/kratos.jpg",
 				"cuadrado": "./img/cuadrado.png",
 				"menu": "./img/settings.png",
-				"fondo": "./img/fondo.png"
+				"fondo": "./img/fondo.png",
+				"nube": "./img/nube.png",
 			}
 		},
 		{
