@@ -1,12 +1,13 @@
 import { Sprite } from "pixi.js";
 import { Graphics } from "pixi.js";
 
-import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
+import { PixiScene } from "../../../engine/scenemanager/scenes/PixiScene";
 import { Tween } from "tweedle.js";
-import { Manager } from "../..";
-import { Keyboard } from "../../engine/input/Keyboard";
-import { Key } from "../../engine/input/Key";
+import { Manager } from "../../..";
+import { Keyboard } from "../../../engine/input/Keyboard";
+import { Key } from "../../../engine/input/Key";
 import { Bala } from "../elements/Bala";
+import { Enemy } from "../elements/Enemy";
 
 export class GameScene extends PixiScene {
 	public static readonly BUNDLES = ["package-2"];
@@ -16,8 +17,11 @@ export class GameScene extends PixiScene {
 
 	private player: Graphics = new Graphics();
 	private playerSpeed: number = 10;
-	private shootDelayS: number = 60;
+	private shootDelayS: number = 10;
 	private lastShoot: number = 0;
+
+	private enemies: Array<Enemy> = new Array<Enemy>();
+	private balas: Array<Bala> = new Array<Bala>();
 
 	constructor() {
 		super();
@@ -45,6 +49,15 @@ export class GameScene extends PixiScene {
 				this.nube.y = 50 + 100 * Math.random();
 			});
 		this.keybinds = new Keyboard();
+
+		this.spawnEnemy();
+	}
+
+	private spawnEnemy(): void {
+		const enemy = new Enemy();
+		this.enemies.push(enemy);
+		this.addChild(enemy);
+		enemy.position.set(1200, 500);
 	}
 
 	public override update(_dt: number): void {
@@ -54,13 +67,36 @@ export class GameScene extends PixiScene {
 			const bulletOffset = 20; // offset es separacion, se suma 20 para que no este pegado al jugador
 			const bullet = new Bala(Manager.width - this.player.x + this.player.width + bulletOffset);
 			this.addChild(bullet);
+			this.balas.push(bullet);
 			bullet.position.set(this.player.x + this.player.width + bulletOffset, this.player.y + this.player.height / 2);
-			console.log(bullet.position);
 		}
 		this.lastShoot++;
 		// ++ es lo mismo que
 		// Algo = Algo + 1 (Algo tiene que tener un numero adentro)
 		// Algo++
+
+		// Chequear si el arreglo de balas no esta vacio
+		if (this.balas.length > 0) {
+			// recorrer todo el arreglo de balas
+			for (const bala of this.balas) {
+				// Chequear si el arreglo de enemigos no esta vacio
+				if (this.enemies.length > 0) {
+					// recorrer todo el arreglo de enemigos
+					for (const enemy of this.enemies) {
+						const hit = bala.body.getBounds().intersects(enemy.body.getBounds());
+						if (hit) {
+							console.log("hit");
+							enemy.getHit();
+						}
+					}
+				}
+
+				if (!bala.destroyed && bala.x >= Manager.width - this.player.x) {
+					const index = this.balas.indexOf(bala);
+					this.balas.splice(index, 1);
+				}
+			}
+		}
 	}
 
 	private playerMovement(): void {

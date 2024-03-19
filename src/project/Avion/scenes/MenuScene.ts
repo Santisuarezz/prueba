@@ -1,8 +1,8 @@
 import { Graphics, Text } from "pixi.js";
-import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
-import { ScaleHelper } from "../../engine/utils/ScaleHelper";
+import { PixiScene } from "../../../engine/scenemanager/scenes/PixiScene";
+import { ScaleHelper } from "../../../engine/utils/ScaleHelper";
 
-import { Manager } from "../..";
+import { Manager } from "../../..";
 import { GameScene } from "./GameScene";
 
 export class MenuScene extends PixiScene {

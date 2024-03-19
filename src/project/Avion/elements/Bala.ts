@@ -3,13 +3,14 @@ import { Container } from "pixi.js";
 import { Tween } from "tweedle.js";
 
 export class Bala extends Container {
-	private bala: Sprite;
+	public body: Sprite;
 	constructor(xTarget: number) {
 		super();
-		this.bala = Sprite.from("balas");
-		this.addChild(this.bala);
+		this.body = Sprite.from("balas");
+		this.addChild(this.body);
+		this.body.tint = 0x003aff;
 
-		new Tween(this.bala)
+		new Tween(this.body)
 			.to({ x: xTarget }, 2000)
 			.start()
 			.onComplete(() => {

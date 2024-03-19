@@ -10,7 +10,7 @@ import { PixiRenderer } from "./engine/scenemanager/renderers/PixiRenderer";
 import { settings } from "pixi.js";
 import { DEFAULTS } from "tweedle.js";
 import { Box2DHelper } from "./engine/utils/Box2DHelper";
-import { MenuScene } from "./project/scenes/MenuScene";
+import { MenuScene } from "./project/Avion/scenes/MenuScene";
 
 settings.RENDER_OPTIONS.hello = false;
 
