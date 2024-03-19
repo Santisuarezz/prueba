@@ -1,13 +1,12 @@
-import { Container, Graphics } from "pixi.js";
+import { Container, Sprite } from "pixi.js";
 import { Tween } from "tweedle.js";
 
 export class Bala extends Container {
+	private bala: Sprite = Sprite.from(balas);
 	constructor(xTarget: number) {
 		super();
-		const balaGraph: Graphics = new Graphics();
-		balaGraph.beginFill(0x403c46);
-		balaGraph.drawCircle(0, 0, 10);
-		this.addChild(balaGraph);
+
+		this.addChild(this.bala);
 
 		new Tween(balaGraph)
 			.to({ x: xTarget }, 2000)
