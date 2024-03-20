@@ -10,7 +10,8 @@ import { PixiRenderer } from "./engine/scenemanager/renderers/PixiRenderer";
 import { settings } from "pixi.js";
 import { DEFAULTS } from "tweedle.js";
 import { Box2DHelper } from "./engine/utils/Box2DHelper";
-import { FightScene } from "./project/Espada/Scenes/FightScene";
+
+import { Selector } from "./project/Espada/Scenes/Selector";
 
 settings.RENDER_OPTIONS.hello = false;
 
@@ -59,7 +60,7 @@ window.dispatchEvent(new Event("resize"));
 
 const initializeCb = function (): void {
 	// Manager.changeScene(import(/* webpackPrefetch: true */ "./project/scenes/LoaderScene"));
-	Manager.changeScene(FightScene);
+	Manager.changeScene(Selector);
 };
 
 if (ALL_FLAGS.USE_BOX2D) {
